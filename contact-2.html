@@ -100,120 +100,10 @@
 					線上諮詢
 				</h2>
 				<div class="form inner2">
-					<form name="to_mail" action="https://home-999.com/mail_send.php" method="post" onclick="return false" id="to_mail">
-						<div class="form-col show-item">
-							<h3 class="form-title">
-								<i class="fa fa-user" aria-hidden="true"></i>
-								<span class="en2">Your Information</span><br>
-								基本資訊
-							</h3>
-							<div class="form-step en">1</div>
-							<div class="form-cont">
-								<div class="form-text">
-									<label for="username">訪客姓名<span class="must">*</span></label>
-									<input id="username" name="username" class="input1" type="text">
-								</div>
-								<div class="form-text">
-									<label for="email">電子信箱<span class="must">*</span></label>
-									<input id="email" name="email" class="input1" type="text">
-								</div>
-								<div class="form-text">
-									<label for="phone">連絡電話<span class="must">*</span></label>
-									<input id="phone" name="phone" class="input1" type="text">
-								</div>
-							</div>
-						</div>
-						<div class="form-col show-item">
-							<h3 class="form-title">
-								<i class="fa fa-home" aria-hidden="true"></i>
-								<span class="en2">House Information</span><br>
-								諮詢需求
-							</h3>
-							<div class="form-step en">2</div>
-							<div class="form-cont">
-								<div class="form-text">
-									<label for="addr">房屋地點</label>
-									<select id="addr" name="addr" class="select1">
-										<option value="" class="novalue">請選擇</option>
-										<option value="台北市">台北市</option>
-										<option value="基隆市">基隆市</option>
-										<option value="新北市">新北市</option>
-										<option value="宜蘭縣">宜蘭縣</option>
-										<option value="桃園市">桃園市</option>
-										<option value="新竹市">新竹市</option>
-										<option value="新竹縣">新竹縣</option>
-										<option value="苗栗縣">苗栗縣</option>
-										<option value="台中市">台中市</option>
-										<option value="彰化縣">彰化縣</option>
-										<option value="南投縣">南投縣</option>
-										<option value="嘉義市">嘉義市</option>
-										<option value="嘉義縣">嘉義縣</option>
-										<option value="雲林縣">雲林縣</option>
-										<option value="台南市">台南市</option>
-										<option value="高雄市">高雄市</option>
-										<option value="屏東縣">屏東縣</option>
-										<option value="花蓮縣">花蓮縣</option>
-										<option value="台東縣">台東縣</option>
-										<option value="澎湖縣">澎湖縣</option>
-										<option value="金門縣">金門縣</option>
-										<option value="連江縣">連江縣</option>
-									</select>
-								</div>
-								<div class="form-text">
-									<label for="space" class="en">空間性質</label>
-									<select id="space" name="space" class="select1">
-										<option value="" class="novalue">請選擇</option>
-										<option value="新屋裝修">新屋裝修</option>
-										<option value="中古屋翻修">中古屋翻修</option>
-										<option value="預售屋">預售屋</option>
-										<option value="商業空間">商業空間</option>
-										<option value="辦公空間">辦公空間</option>
-									</select>
-								</div>
-								<div class="form-text">
-									<label for="size" class="en">空間坪數</label>
-									<select id="size" name="size" class="select1">
-										<option value="" class="novalue">請選擇</option>
-										<option value="20坪以內">20坪以內</option>
-										<option value="20~40坪">20~40坪</option>
-										<option value="40~60坪">40~60坪</option>
-										<option value="60~80坪">60~80坪</option>
-										<option value="80~100坪">80~100坪</option>
-										<option value="100坪以上">100坪以上</option>
-									</select>
-								</div>
-							</div>
-						</div>
-						<div class="form-col show-item">
-							<h3 class="form-title">
-								<i class="fa fa-commenting" aria-hidden="true"></i>
-								<span class="en2">Your Message</span><br>
-								諮詢內容
-							</h3>
-							<div class="form-step en">3</div>
-							<div class="form-cont">
-								<div class="form-text">
-									<label for="message">留言內容<span class="must">*</span></label>
-									<textarea id="message" name="message" class="textarea1" cols="" rows="" placeholder="請輸入您的諮詢內容，我們將盡快與您連絡"></textarea>
-								</div>
-							</div>
-						</div>
-						<div class="form-send show-item">
-							<div class="form-captcha">
-								<label for="captcha">驗證碼<span class="must">*</span></label>
-								<div class="captcha-cont">
-									<img id="siimage" src="captcha/securimage_show9589.png?sid=919d20eb60fa5f6613f2a963a2f10b08" alt="驗證碼"/>
-									<a class="refresh" tabindex="-1" href="#" title="Refresh Image" onClick="document.getElementById('siimage').src = 'captcha/securimage_show7278.png?sid=' + Math.random(); return false"><i class="fa fa-refresh" aria-hidden="true"></i></a>
-									<div class="captcha-input">
-										<input id="captcha" name="captcha" class="input1" type="text">
-									</div>
-								</div>								
-							</div>
-							<div class="form-btn">
-								<a href="javascript:OnClick=document.to_mail.submit()" class="en" id="button">SEND MESSAGE</a>
-							</div>
-						</div>
-					</form>
+					<!-- 原本的表單已被移除，改為嵌入Google表單 -->
+					<div class="google-form-container show-item">
+						<iframe src="https://docs.google.com/forms/d/e/1FAIpQLSezw9xJNM4klXP6crP5d_ZEtYFO9JNv3jqdqHsYBEuZs8ZX0A/viewform?embedded=true" frameborder="0" marginheight="0" marginwidth="0">載入中…</iframe>
+					</div>
 				</div>
 			</section>
 		</div>
@@ -229,8 +119,7 @@
 			<li><div class="footer-icon icon-line"><img src="images/icon/linea.png" alt=""></div><a href="https://lin.ee/zaU2Efo" target="_blank">&thinsp;@858fjtet</a></li>
 		</ul>
 		<div class="footer-copyright en">
-			&copy; 2017禾久室內設計版權所有.
-			WEB DESIGN BY <a href="http://www.money888.cc/" target="_blank">JINGCAI</a>.
+			&copy; 2017禾久室內設計版權所有.			
 		</div>
 	</footer>
 	<div class="consult">
