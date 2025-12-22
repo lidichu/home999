@@ -139,9 +139,72 @@
   font-weight: bold;
 }
 
+/* 特別優惠強調樣式 */
 .charge-special {
-  color: #f0ad4e;
+  background: linear-gradient(135deg, #ff6b6b 0%, #ff8e53 100%);
+  color: white;
   font-weight: bold;
+  padding: 15px 20px;
+  border-radius: 8px;
+  margin-top: 15px;
+  box-shadow: 0 4px 15px rgba(255, 107, 107, 0.3);
+  position: relative;
+  overflow: hidden;
+  animation: pulse-glow 2s ease-in-out infinite;
+}
+
+.charge-special::before {
+  content: "★";
+  position: absolute;
+  left: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 24px;
+  animation: star-rotate 3s linear infinite;
+}
+
+.charge-special::after {
+  content: "";
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: linear-gradient(
+    45deg,
+    transparent,
+    rgba(255, 255, 255, 0.1),
+    transparent
+  );
+  transform: rotate(45deg);
+  animation: shine 3s infinite;
+}
+
+@keyframes pulse-glow {
+  0%, 100% {
+    box-shadow: 0 4px 15px rgba(255, 107, 107, 0.3);
+  }
+  50% {
+    box-shadow: 0 4px 25px rgba(255, 107, 107, 0.5);
+  }
+}
+
+@keyframes star-rotate {
+  0% {
+    transform: translateY(-50%) rotate(0deg);
+  }
+  100% {
+    transform: translateY(-50%) rotate(360deg);
+  }
+}
+
+@keyframes shine {
+  0% {
+    left: -50%;
+  }
+  100% {
+    left: 150%;
+  }
 }
 
 .charge-note {
@@ -199,6 +262,15 @@
   
   .process-detail {
     padding: 20px 15px;
+  }
+  
+  .charge-special {
+    padding: 12px 15px;
+    font-size: 14px;
+  }
+  
+  .charge-special::before {
+    font-size: 20px;
   }
 }
 </style>
@@ -391,7 +463,7 @@
               <div class="charge-content">
                 <p>公寓型 每案1,500元</p>
                 <p>透天型 每案5,000元</p>
-                <p class="charge-highlight">此費用可於簽訂設計約後 全額折抵設計費</p>
+                <div class="charge-special">★ 此費用可於簽訂設計約後 全額折抵設計費</div>
                 <p style="color: #666; font-size: 14px;">僅接受現金或匯款</p>
               </div>
             </div>
@@ -401,7 +473,9 @@
               <div class="charge-content">
                 <p>每坪 NT$5,000 (最低以15坪計)</p>
                 <p class="charge-highlight">簽訂施工合約,即可享設計費 8 折優惠</p>
-                <p class="charge-special">★ 特別優惠:若在提案當天簽訂設計合約,設計費可享 5 折超值優惠!</p>
+                <div class="charge-special">
+                  ★ 特別優惠:若在提案當天簽訂設計合約,設計費可享 5 折超值優惠!
+                </div>
               </div>
             </div>
             
