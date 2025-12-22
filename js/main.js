@@ -127,7 +127,7 @@ function setMenu(now){
 
 	//footer
 	var htmlFooter = '<li><div class="footer-icon icon-phone"><i class="fa fa-volume-control-phone" aria-hidden="true"></i></div><a href="tel:02-2279-1348">02-2279-1348</a></li>'+
-					'<li><div class="footer-icon icon-fax"><i class="fa fa-mobile" aria-hidden="true"></i></div><a style="margin-right:16px;" href="tel:0939934337">0939-934-337</a><a href="tel:0978583679">0978-583-679</a></li>'+
+					'<li><div class="footer-icon icon-fax"><i class="fa fa-mobile" aria-hidden="true"></i></div><a style="margin-right:16px;" href="tel:0978583679">0978-583-679</a></li>'+
 					'<li><div class="footer-icon icon-comment"><i class="fa fa-comment" aria-hidden="true"></i></div> <a href="contact.html">諮詢連結</a></li>'+
 					'<li><div class="footer-icon icon-mail"><i class="fa fa-envelope" aria-hidden="true"></i></div><a href="mailto:jimmyjih589@gmail.com">jimmyjih589@gmail.com</a></li>'+
 					'<li><div class="footer-icon icon-facebook"><i class="fa fa-facebook" aria-hidden="true"></i></div><a href="https://www.facebook.com/Taipei.22791348/" target="_blank">禾久室內裝修設計</a></li>'+
@@ -172,7 +172,7 @@ $(function(){
 
 	//右下角我要諮詢按鈕
 	if (isMobile.any()) {
-		$(".consult-img a").attr("href","tel:0939934337");
+		$(".consult-img a").attr("href","tel:0978583679");
 	}else{
 		$(".consult-img a").attr("href","#");
 
