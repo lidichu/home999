@@ -32,6 +32,21 @@
   position: relative;
 }
 
+/* 單數卡片 - 白色背景 */
+.process-card:nth-child(odd) {
+  background: #ffffff;
+}
+
+/* 雙數卡片 - 淡綠色背景 */
+.process-card:nth-child(even) {
+  background: linear-gradient(135deg, #f5f9f7 0%, #e8f3ed 100%);
+}
+
+/* 雙數卡片的數字圓圈使用不同的漸層色 */
+.process-card:nth-child(even) .process-number {
+  background: linear-gradient(135deg, #6b8e7d, #8fb09f);
+}
+
 .process-card:hover {
   transform: translateY(-5px);
   box-shadow: 0 5px 20px rgba(0,0,0,0.15);
@@ -396,50 +411,7 @@
           <div class="warranty-note show-item">
             <p><strong>★ 提供非消耗性物品的一年保修服務</strong></p>
           </div>
-          
-          <!-- 詳細說明 -->
-          <div class="process-detail show-item">
-            <h3>一、初步洽談</h3>
-            <p>由設計師向客戶說明整體服務流程、預計時程、收費標準及過往作品實例,協助客戶了解本公司之服務內容與作業方式。同時進一步了解屋主的預算範圍、空間需求、生活習慣與偏好風格,作為後續規劃之基礎。</p>
-          </div>
-          
-          <div class="process-detail show-item">
-            <h3>二、到府丈量</h3>
-            <p>設計師親自至現場進行實地勘查與丈量,確認現有空間條件、結構狀況及施工限制,並拍照存檔。同時針對客戶需求進行可行性評估,提供初步專業建議與方向說明。</p>
-          </div>
-          
-          <div class="process-detail show-item">
-            <h3>三、平面規劃提案</h3>
-            <p>依據丈量資料與需求討論結果,提供平面配置圖,並搭配設計概念及材質示意進行說明。同時提出初步空間規劃建議與工程概算,供客戶評估與討論。確認方向後,進行提案費用之支付。</p>
-          </div>
-          
-          <div class="process-detail show-item">
-            <h3>四、設計合約</h3>
-            <p>當客戶對平面規劃提案內容確認無誤後,雙方簽訂設計合約。設計師隨即進行施工圖說、3D模擬圖繪製,並完成各項材質、色系與設備之選定,並清楚標示於施工圖說中。</p>
-          </div>
-          
-          <div class="process-detail show-item">
-            <h3>五、工程報價</h3>
-            <p>依據完成之設計圖說與施工內容,提供詳細工程報價單,清楚列出各項工程項目、施工方式與費用明細,供客戶審閱與確認。</p>
-          </div>
-          
-          <div class="process-detail show-item">
-            <h3>六、工程合約</h3>
-            <p>客戶確認工程內容與報價後,依據設計圖說與報價單簽訂工程合約。設計費用可依合約約定部分折抵工程費用,相關付款方式與施工條件皆以合約內容為準。</p>
-          </div>
-          
-          <div class="process-detail show-item">
-            <h3>七、進場施工</h3>
-            <p>工程正式進場後,設計師依合約內容進行現場監督,確認工料之色澤、規格與品質,並留意細部收邊與尺寸調整。施工過程中如有追加或變更項目,將依合約報價單單價列出明細,並經業主簽名確認後執行。</p>
-          </div>
-          
-          <div class="process-detail show-item">
-            <h3>八、完工驗收</h3>
-            <p>工程完工後,依據合約內容進行完工驗收。驗收完成後,依工程合約提供保固服務,並持續提供後續售後服務與必要之協助。</p>
-            <p style="margin-top: 15px;"><strong>★ 補充說明:</strong> 本公司另提供非消耗性物品一年保固服務,詳細內容依合約約定為準。</p>
-          </div>
-        </div>
-      </section>
+        </section>
 
       <!-- 收費標準 -->
       <section id="charge">
