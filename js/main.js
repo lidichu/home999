@@ -1,10 +1,8 @@
 function viewport() {
- var e = window, a = 'inner';
- if (!('innerWidth' in window )) {
-  a = 'client';
-  e = document.documentElement || document.body;
- }
- return { width : e[ a+'Width' ] , height : e[ a+'Height' ] };
+  return {
+    width: window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth,
+    height: window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight
+  };
 }
 
 function isDevice(){
@@ -64,36 +62,25 @@ function setSVG(){
 }
 
 function setScroll(){
-	//set header position	
-	var win = $(window),
-		header = $(".header"),
-		body = $("body"),
-		winScroll = win.scrollTop(),
-		winH = win.height(),
-		headerH = header.height(),
-		moveY = winH/2 - headerH/2,
-		nowY = winH/2;
+    //set header position    
+    var win = $(window),
+        header = $(".header"),
+        body = $("body"),
+        headerH = header.height();
 
-	if(isDevice() == "pc"){
-		if(winScroll > moveY){
-			nowY = headerH/2;
-			body.addClass('header-top');
-		}else{
-			nowY = winH/2 - winScroll;
-			body.removeClass('header-top');
-		}
-	}else{
-		nowY = headerH/2;
-		body.removeClass('header-top');
-	}
+    // 直接固定在最上方
+    header.css({top: 0, marginTop: 0});
+    body.addClass('header-top');
+    
+    // 只在電腦版移除 nav-open 類
+    if(isDevice() === "pc") {
+    body.removeClass('nav-open');
+    }
 
-	header.css({top:nowY});
-	body.removeClass('nav-open');
+    //enter page animate
+    $('.top').addClass('top-show');
 
-	//enter page animate
-	$('.top').addClass('top-show');
-
-	setAnimate();
+    setAnimate();
 }
 
 
