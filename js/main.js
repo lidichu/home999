@@ -131,7 +131,9 @@ function setMenu(now){
 		return navigator.userAgent.match(/BlackBerry/i);
 	},
 	iOS: function () {
-		return navigator.userAgent.match(/iPhone|iPod|ipad/i);
+        // 增強 iOS 偵測功能
+        return navigator.userAgent.match(/iPhone|iPod|iPad/i) || 
+               (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
 	},
 	Opera: function () {
 		return navigator.userAgent.match(/Opera Mini/i);
@@ -140,7 +142,7 @@ function setMenu(now){
 		return navigator.userAgent.match(/IEMobile/i);
 	},
 	any: function () {
-		return (isMobile.Android() || isMobile.BlackBerry() || isMobile.iOS() || isMobile.Opera() || isMobile.Windows());
+        return (isMobile.Android() || isMobile.BlackBerry() || isMobile.iOS() || isMobile.Opera() || isMobile.Windows() || viewport().width <= 1100);
 	}
 };
 
@@ -158,9 +160,37 @@ $(function(){
 	setScroll();
 
 	//右下角我要諮詢按鈕
-	if (isMobile.any()) {
+	// 為 iOS 修改工具列顯示邏輯
+	if (isMobile.iOS()) {
+		// iOS 裝置特殊處理
+		$(".consult-img a").attr("href","#");
+		
+		$(".consult-img").click(function(){
+			$(".consult").toggleClass('consult-show').removeClass('consult-box-show');
+			$(".line-box, .phone-box").removeClass('box-show');
+			return false;
+		});
+
+		$(".consult-icon .icon-line").click(function(){
+			$(".line-box").addClass('box-show');
+			$(".consult").addClass('consult-box-show');
+			return false;
+		});
+		$(".consult-icon .icon-phone").click(function(){
+			$(".phone-box").addClass('box-show');
+			$(".consult").addClass('consult-box-show');
+			return false;
+		});
+		$(".consult-title a").click(function(){
+			$(".consult").removeClass('consult-box-show');
+			$(".line-box, .phone-box").removeClass('box-show');
+			return false;
+		});
+	} else if (isMobile.any()) {
+		// 其他行動裝置維持原有行為
 		$(".consult-img a").attr("href","tel:0978583679");
-	}else{
+	} else {
+		// 電腦版
 		$(".consult-img a").attr("href","#");
 
 		$(".consult-img").on("mouseenter",function() {
@@ -168,8 +198,7 @@ $(function(){
 		}).click(function(){
 			$(".consult").toggleClass('consult-show').removeClass('consult-box-show');
 			$(".line-box, .phone-box").removeClass('box-show');
-
-			return false;
+						 return false;
 		});
 
 		$(".consult-icon .icon-line").click(function(){
@@ -177,21 +206,21 @@ $(function(){
 			$(".consult").addClass('consult-box-show');
 
 			return false;
-		})
+			 })
 
 		$(".consult-icon .icon-phone").click(function(){
 			$(".phone-box").addClass('box-show');
 			$(".consult").addClass('consult-box-show');
 
 			return false;
-		})
+})
 
 		$(".consult-title a").click(function(){
 			$(".consult").removeClass('consult-box-show');
 			$(".line-box, .phone-box").removeClass('box-show');
 			
 			return false;
-		})
+})
 	}
 
 	//表單相關
@@ -216,7 +245,7 @@ $(function(){
 						 return false;
 					 }
 				 }
-			 })
+})
 })
 
 $(window).scroll(function(){

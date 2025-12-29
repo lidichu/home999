@@ -932,22 +932,27 @@ a:hover {
     }
 }
 
-/* 平板版 (640px-1100px) */
-@media screen and (max-width:1100px) and (min-width:641px) {
-    .navigation {
-        position: fixed;
-        right: 0; /* 在平板版中默認顯示菜單 */
-        width: 240px;
-        height: 100%;
-        background: #f6f6f6;
-        box-shadow: 0 0 10px rgba(0, 0, 0, .5);
-        padding: 100px 30px;
-        box-sizing: border-box;
-        transition: right 1s;
-        overflow: auto
+@supports (-webkit-touch-callout: none) {
+    .consult-icon {
+        -webkit-transform: translateZ(0);
+        transform: translateZ(0);
     }
     
-    /* 其他平板版特定樣式 */
+    .consult.consult-show .consult-icon {
+        visibility: visible;
+        opacity: 1;
+        bottom: 50px;
+        -webkit-transform: translateZ(0);
+        transform: translateZ(0);
+    }
+    
+    .consult-box-show .box-show {
+        visibility: visible;
+        opacity: 1;
+        bottom: 60px;
+        -webkit-transform: translateZ(0);
+        transform: translateZ(0);
+    }
 }
 
 @media screen and (max-width:640px) {
