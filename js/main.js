@@ -149,9 +149,29 @@ function setMenu(now){
 $(function(){
 	setSVG();
 	
-	$(".hamburger").click(function(){
-		$("body").toggleClass('nav-open');
-	})
+	$(".hamburger").click(function(e){
+		e.preventDefault();
+        
+        // 切換aria-expanded狀態
+        var expanded = $(this).attr('aria-expanded') === 'true';
+        $(this).attr('aria-expanded', !expanded ? 'true' : 'false');
+        
+        // 切換選單開啟狀態
+        $("body").toggleClass('nav-open');
+        
+        // 阻止事件冒泡
+        return false;
+	});
+
+		// 在視窗調整大小時重新檢查
+    $(window).resize(function() {
+        if(isDevice() === "pc") {
+            $("body").removeClass('nav-open');
+            $(".hamburger").attr('aria-expanded', 'false');
+        }
+    });
+
+
 
 	$(".scroll-down, .scroll-down2").click(function(){
 		$("body,html").animate({scrollTop: $(window).height()-110},1000);

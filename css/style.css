@@ -214,9 +214,15 @@ a:hover {
     top: 20px;
     right: 30px;
     cursor: pointer;
-    transition: transform .3s, opacity .3s; /* 修正拼寫錯誤 trasform → transform */
+    transform: translateZ(0); /* 啟用硬件加速 */
+    -webkit-transform: translateZ(0);
+    transition: transform .3s, opacity .3s;
     z-index: 12;
-    display: block !important; /* 確保一定顯示 */
+    background: none;
+    border: none;
+    padding: 0;
+    width: 40px;
+    height: 40px;
 }
 
 .hamburger:hover {
@@ -232,12 +238,15 @@ a:hover {
 }
 
 .hamburger-bar {
+    display: block;
     width: 30px;
     height: 4px;
-    background: #333; /* 加深顏色提高對比度 */
+    background-color: #333; /* 深化顏色 */
     margin: 7px auto;
     border-radius: 2px;
-    transition: transform .3s;
+    transform: translateZ(0); /* 啟用硬件加速 */
+    -webkit-transform: translateZ(0);
+    transition: transform .3s, opacity .3s;
 }
 
 .nav-open .hamburger-bar:nth-child(1),
@@ -438,7 +447,7 @@ a:hover {
     margin: 10px auto;
     border-left: #fff solid 1px;
     border-bottom: #fff solid 1px;
-    trasnoform: rotate(-45deg)
+    transform: rotate(-45deg)
 }
 
 .scroll-down2 {
@@ -799,27 +808,32 @@ a:hover {
     bottom: 60px
 }
 
+@media screen and (min-width: 1101px) {
+    /* 在大螢幕上隱藏漢堡按鈕 */
+    .hamburger {
+        display: none;
+    }
+    
+    /* 確保大螢幕上選單始終可見 */
+    .navigation {
+        visibility: visible;
+        opacity: 1;
+    }
+    
+    .navigation li {
+        opacity: 1;
+    }
+}
+
+
 @media screen and (max-width:1100px) {
 
     /* 強化漢堡選單在行動裝置上的顯示 */
     .hamburger {
-        top: 15px;
-        right: 15px;
-        background-color: rgba(255, 255, 255, 0.9); /* 添加背景色增加對比度 */
-        padding: 5px;
-        border-radius: 5px;
         width: 40px;
         height: 40px;
-        display: flex !important;
-        flex-direction: column;
-        justify-content: center;
-        z-index: 999;
-    }
-    
-    .hamburger-bar {
-        background: #333;
-        display: block !important;
-        margin: 3px auto;
+        border-radius: 5px;
+        background-color: rgba(255, 255, 255, 0.9); /* 增加對比度 */
     }
 
     .header {
@@ -829,15 +843,17 @@ a:hover {
 
     .navigation {
         position: fixed;
-        right: -250px;
-        width: 240px;
-        height: 100%;
-        background: #f6f6f6;
-        box-shadow: 0 0 10px rgba(0, 0, 0, .5);
-        padding: 100px 30px;
-        box-sizing: border-box;
-        transition: right 1s;
-        overflow: auto
+        top: 0;
+        right: -200px; /* 初始隱藏在螢幕外 */
+        width: 200px;
+        height: 100vh; /* 全高 */
+        background: #fff; /* 白色背景 */
+        padding: 80px 10px 20px; /* 頂部間距讓出漢堡按鈕的空間 */
+        box-shadow: -2px 0 5px rgba(0, 0, 0, 0.2);
+        transition: right 0.3s ease;
+        overflow-y: auto;
+        -webkit-overflow-scrolling: touch;
+        z-index: 10; /* 確保在其他元素之上，但在漢堡按鈕之下 */
     }
 
     .navigation ul {
@@ -877,7 +893,8 @@ a:hover {
     }
 
     .nav-open .navigation {
-        right: 0
+        right: 0;
+        visibility: visible;
     }
 
     .menu-mobile {
@@ -976,14 +993,9 @@ a:hover {
         -webkit-transform: translateZ(0);
         transform: translateZ(0);
     }
-        .hamburger {
-        -webkit-transform: translateZ(0);
-        transform: translateZ(0);
-        -webkit-backface-visibility: hidden;
-        backface-visibility: hidden;
-    }
-    
-    .hamburger-bar {
+    .hamburger, 
+    .hamburger-bar, 
+    .navigation {
         -webkit-transform: translateZ(0);
         transform: translateZ(0);
         -webkit-backface-visibility: hidden;
@@ -994,6 +1006,10 @@ a:hover {
     .nav-open .hamburger-bar:nth-child(1) {
         -webkit-transform: translateY(11px);
         transform: translateY(11px);
+    }
+
+    .nav-open .hamburger-bar:nth-child(2) {
+        opacity: 0;
     }
     
     .nav-open .hamburger-bar:nth-child(3) {
