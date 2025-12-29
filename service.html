@@ -156,44 +156,17 @@
 
 /* 特別優惠強調樣式 */
 .charge-special {
-  background: linear-gradient(135deg, #ff6b6b 0%, #ff8e53 100%);
-  color: white;
-  font-weight: bold;
-  padding: 15px 20px;
-  border-radius: 8px;
-  margin-top: 15px;
-  box-shadow: 0 4px 15px rgba(255, 107, 107, 0.3);
-  position: relative;
-  overflow: hidden;
-  animation: pulse-glow 2s ease-in-out infinite;
+  background-color: #FFF8E1; /* 淡黃色背景 */
+  border-left: 4px solid #FFB300; /* 黃色側邊框 */
+  padding: 12px 15px;
+  margin: 10px 0;
+  font-size: 14px;
+  color: #795548;
+  border-radius: 4px;
+  line-height: 1.5; /* 減少行高 */
+  box-shadow: 0 1px 3px rgba(0,0,0,0.05);
 }
 
-.charge-special::before {
-  content: "★";
-  position: absolute;
-  left: 10px;
-  top: 50%;
-  transform: translateY(-50%);
-  font-size: 24px;
-  animation: star-rotate 3s linear infinite;
-}
-
-.charge-special::after {
-  content: "";
-  position: absolute;
-  top: -50%;
-  left: -50%;
-  width: 200%;
-  height: 200%;
-  background: linear-gradient(
-    45deg,
-    transparent,
-    rgba(255, 255, 255, 0.1),
-    transparent
-  );
-  transform: rotate(45deg);
-  animation: shine 3s infinite;
-}
 
 @keyframes pulse-glow {
   0%, 100% {
