@@ -214,8 +214,9 @@ a:hover {
     top: 20px;
     right: 30px;
     cursor: pointer;
-    transition: trasform .3s, opacity .3s;
-    z-index: 12
+    transition: transform .3s, opacity .3s; /* 修正拼寫錯誤 trasform → transform */
+    z-index: 12;
+    display: block !important; /* 確保一定顯示 */
 }
 
 .hamburger:hover {
@@ -227,16 +228,16 @@ a:hover {
 }
 
 .header-top .hamburger {
-    opacity: 0
+    opacity: 1
 }
 
 .hamburger-bar {
     width: 30px;
     height: 4px;
-    background: #ccc;
+    background: #333; /* 加深顏色提高對比度 */
     margin: 7px auto;
     border-radius: 2px;
-    transition: transform .3s
+    transition: transform .3s;
 }
 
 .nav-open .hamburger-bar:nth-child(1),
@@ -799,6 +800,28 @@ a:hover {
 }
 
 @media screen and (max-width:1100px) {
+
+    /* 強化漢堡選單在行動裝置上的顯示 */
+    .hamburger {
+        top: 15px;
+        right: 15px;
+        background-color: rgba(255, 255, 255, 0.9); /* 添加背景色增加對比度 */
+        padding: 5px;
+        border-radius: 5px;
+        width: 40px;
+        height: 40px;
+        display: flex !important;
+        flex-direction: column;
+        justify-content: center;
+        z-index: 999;
+    }
+    
+    .hamburger-bar {
+        background: #333;
+        display: block !important;
+        margin: 3px auto;
+    }
+
     .header {
         width: 100%;
         overflow: visible
@@ -953,6 +976,30 @@ a:hover {
         -webkit-transform: translateZ(0);
         transform: translateZ(0);
     }
+        .hamburger {
+        -webkit-transform: translateZ(0);
+        transform: translateZ(0);
+        -webkit-backface-visibility: hidden;
+        backface-visibility: hidden;
+    }
+    
+    .hamburger-bar {
+        -webkit-transform: translateZ(0);
+        transform: translateZ(0);
+        -webkit-backface-visibility: hidden;
+        backface-visibility: hidden;
+    }
+    
+    /* 針對 iOS 修正變換狀態 */
+    .nav-open .hamburger-bar:nth-child(1) {
+        -webkit-transform: translateY(11px);
+        transform: translateY(11px);
+    }
+    
+    .nav-open .hamburger-bar:nth-child(3) {
+        -webkit-transform: translateY(-11px) rotate(90deg);
+        transform: translateY(-11px) rotate(90deg);
+    }
 }
 
 @media screen and (max-width:640px) {
@@ -973,7 +1020,9 @@ a:hover {
 
     .hamburger {
         top: 10px;
-        right: 10px
+        right: 10px;
+        width: 35px;
+        height: 35px;
     }
 
     .navigation {
