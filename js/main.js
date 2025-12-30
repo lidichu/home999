@@ -148,6 +148,50 @@ function setMenu(now){
 
 $(function(){
 	setSVG();
+
+		// 添加圖片緩存控制 - 在setSVG()之後添加以下代碼
+	// 強制圖片更新 - 為所有圖片添加時間戳
+	(function() {
+		var forceImageReload = true; // 設為false可停用此功能
+		
+		if(forceImageReload) {
+			var timestamp = new Date().getTime();
+			
+			// 處理普通圖片
+			$('img').each(function() {
+				var $img = $(this);
+				// 跳過已處理的SVG
+				if(!$img.hasClass('replaced-svg')) {
+					var src = $img.attr('src');
+					if(src) {
+						// 避免重複添加時間戳
+						src = src.split('?')[0];
+						// 添加時間戳
+						$img.attr('src', src + '?t=' + timestamp);
+					}
+				}
+			});
+			
+			// 處理背景圖片
+			$('.top-images-img').each(function() {
+				var $bg = $(this);
+				var style = $bg.attr('style');
+				if(style && style.includes('background-image')) {
+					// 提取URL
+					var matches = style.match(/url\(['"]?([^'"]+)['"]?\)/);
+					if(matches && matches[1]) {
+						var bgUrl = matches[1].split('?')[0];
+						// 替換URL
+						var newStyle = style.replace(/url\(['"]?[^'"]+['"]?\)/, 
+									 'url(' + bgUrl + '?t=' + timestamp + ')');
+						$bg.attr('style', newStyle);
+					}
+				}
+			});
+			
+			console.log('圖片緩存控制已啟用 - 時間戳: ' + timestamp);
+		}
+	})();
 	
 	$(".hamburger").click(function(e){
 		e.preventDefault();

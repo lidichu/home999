@@ -1,0 +1,14 @@
+# 開發階段 - 暫時禁用所有緩存
+# 當網站開發穩定後，可以刪除此文件或註釋掉這些設置
+
+# 禁用所有文件的緩存
+<IfModule mod_headers.c>
+    Header set Cache-Control "no-store, no-cache, must-revalidate, max-age=0"
+    Header set Pragma "no-cache"
+    Header set Expires "0"
+</IfModule>
+
+# LiteSpeed特定設置
+<IfModule LiteSpeed>
+    CacheDisable public /
+</IfModule>
