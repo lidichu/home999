@@ -80,7 +80,6 @@ function setShare(){
 
 // 確保 DOM 已經完全載入
 $(document).ready(function(){
-	setShare();
 	
 	// 在文檔載入完成後立即嘗試初始化一次
 	setTimeout(function() {
