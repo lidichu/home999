@@ -87,12 +87,18 @@ function setScroll(){
 function setMenu(now){
 	//主選單
 	var bnNav = []
-		bnNav[0] = { tw : '關於我們', en : '關於我們',  	link : 'about.html'}
-		bnNav[1] = { tw : '設計案例', en : '設計案例', link : 'portfolio.html'}
-		bnNav[2] = { tw : '設計嚴選', en : '設計嚴選',link : 'collection.html'}
-		bnNav[3] = { tw : '服務內容', en : '服務內容',  	link : 'service.html'}
-		bnNav[4] = { tw : '最新消息', en : '最新消息',  	link : 'news.html'}
-		bnNav[5] = { tw : '連絡我們', en : '連絡我們',  	link : 'contact.html'}
+    bnNav[0] = { tw : '關於我們', en : '關於我們',      link : 'about.html'}
+    bnNav[1] = { tw : '設計案例', en : '設計案例',  link : 'portfolio.html'}
+    bnNav[2] = { tw : '設計嚴選', en : '設計嚴選', link : 'collection.html'}
+    bnNav[3] = { tw : '服務內容', en : '服務內容',    link : 'service.html'}
+    
+    // --- 新增這一行 ---
+    bnNav[4] = { tw : '裝修學堂', en : '裝修學堂',  link : 'knowledge.html'} 
+    // ----------------
+    
+    bnNav[5] = { tw : '最新消息', en : '最新消息',       link : 'news.html'} // 原本的 index 順延
+    bnNav[6] = { tw : '連絡我們', en : '連絡我們',    link : 'contact.html'}
+
 
 	var htmlNav = "";
 	var N = 0;

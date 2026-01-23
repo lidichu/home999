@@ -922,29 +922,79 @@ a:hover {
         margin-top: 50px
     }
 
+        /* 確保圖片完整顯示 */
+    .top-images-img {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        background-size: cover;
+        background-position: center center;
+    }
+
     .top-images2 {
         display: block;
-        width: 100%; /* 使其佔據整個寬度 */
-        height: 50vh; /* 設定合適的高度 */
+        width: 100%;
+       height: 70vh; /* 增加高度，確保圖片完整顯示 */
+        position: relative;
+    }
+
+    /* 確保圖片正確覆蓋整個容器 */
+    .top-images2 .top-images-img {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        background-size: cover;
+        background-position: center;
     }
     
-    .top-cont {
-        position: static;
-        width: auto;
-        margin: 0; /* 減少頂部間距 */
+    /* 隱藏第二張圖 */
+    .top-images3 {
+        display: none;
+    }
+    
+    /* 特別處理collection頁面的top-cont2元素 */
+    .top-cont2 {
+        position: static !important; /* 強制覆蓋任何其他樣式 */
+        width: 100% !important;
+        height: auto !important;
         background: #f6f6f6;
-        padding: 10%;
+        padding: 30px 5%;
+        box-sizing: border-box;
+    }
+    
+    /* 確保內容正確顯示 */
+    .top-cont2 .top-cont-inner {
+        position: static;
+        width: 100%;
+        transform: none;
+        max-width: none;
+    }
+
+        /* 確保上方區域內容不會溢出 */
+    .top.show-item {
+        overflow: hidden;
+    }
+    
+    /* 微調頁面標題和內容區域 */
+    .page-title {
+        margin-bottom: 20px;
+    }
+    
+    .page-cont {
+        margin-top: 30px;
     }
 
     .top-cont-inner {
         position: static;
         max-width: none;
-        width: auto;
-        transform: none
+        width: 100%;
+        transform: none;
+        text-align: center;
     }
 
-    .page-title .en2 {
-        font-size: 3em
+
+    .top {
+        overflow: hidden;
     }
 
     .scroll-down2 {
@@ -978,6 +1028,22 @@ a:hover {
     .consult-text {
         display: none
     }
+
+    /* 只針對collection頁面的頂部圖片區域 */
+    .collection-banner {
+        display: none !important; /* 強制隱藏，防止被其他樣式覆蓋 */
+    }
+    
+    /* 調整collection頁面標題區域樣式 */
+    .collection-banner + .top-cont2 {
+        margin-top: 80px; /* 給頂部留出足夠空間，避免被header覆蓋 */
+        background: #fff; /* 或與您的設計匹配的背景色 */
+        padding: 20px 5%;
+        width: 100%;
+        box-sizing: border-box;
+    }
+
+
 }
 
 @supports (-webkit-touch-callout: none) {
@@ -1073,13 +1139,13 @@ a:hover {
     }
     
     /* 調整容器高度以保持更好的比例 */
-    .top-images {
-        height: 70vh; /* 視口高度的70%，可根據需求調整 */
+    .top-images2 {
+        height: 50vh; /* 在更小的螢幕上稍微減少高度 */
     }
 
-    .top-cont {
-        padding: 30px 10px;
-        margin: 60px 0 10px
+    /* 減少內容區域的內邊距 */
+    .top-cont, .top-cont2 {
+        padding: 20px 5%;
     }
 
     .page-title .en2,
