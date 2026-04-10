@@ -268,7 +268,8 @@
     width: 100%;
     height: 100%;
     z-index: 3;
-    background-image: linear-gradient(rgba(0, 0, 0, 0) 90%, rgba(0, 0, 0, 0.5))
+    background-image: linear-gradient(rgba(0, 0, 0, 0) 90%, rgba(0, 0, 0, 0.5));
+	pointer-events: none;
 }
 
 .slogan {
@@ -489,6 +490,123 @@
 
 .show-now.list-item {
     transform: scale(1)
+}
+
+/* ==========================================================================
+   【新設計】輪播圖左右箭頭 (極簡清透版)
+   ========================================================================== */
+.slider-arrows {
+    position: absolute;
+    top: 50%;
+    width: 100%;
+    transform: translateY(-50%);
+    z-index: 10;
+    display: flex;
+    justify-content: space-between;
+    padding: 0 3%; /* 縮小邊距，讓箭頭靠近邊緣一點 */
+    box-sizing: border-box;
+    pointer-events: none; /* 讓中間空出來的地方可以點擊到底下的圖片 */
+}
+
+.slider-prev, .slider-next {
+    pointer-events: auto; /* 讓箭頭本身可以被點擊 */
+    color: rgba(255, 255, 255, 0.7); /* 初始設定為半透明白色，更清透 */
+    text-align: center;
+    font-size: 60px; /* 把箭頭放大，更有設計感 */
+    font-weight: 100; /* 使用細線條 */
+    cursor: pointer;
+    transition: color 0.3s, transform 0.3s; /* 加入轉場動畫 */
+    
+    /* 拿掉原本的圓圈、背景色、固定寬高與行高 */
+    width: auto;
+    height: auto;
+    background: none;
+    line-height: normal;
+    border-radius: 0;
+    
+    /* 增加一點文字陰影，確保在白底圖片上也能看見 */
+    text-shadow: 0 0 10px rgba(0,0,0,0.3);
+}
+
+/* 滑鼠滑過時的特效 */
+.slider-prev:hover, .slider-next:hover {
+    color: #e61e19; /* 變成網站的主題紅 */
+    background: none; /* 確保滑過時不會出現背景色 */
+}
+
+/* 微調：左箭頭滑過時輕微向左浮動，右箭頭向右浮動，增加互動感 */
+.slider-prev:hover {
+    transform: translateX(-5px);
+}
+.slider-next:hover {
+    transform: translateX(5px);
+}
+
+/* ==========================================================================
+   【新設計】Banner 懸停浮現特效 (Hover Overlay)
+   ========================================================================== */
+.banner-overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 150px; /* 底部漸層的高度 */
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.6), transparent);
+    display: flex;
+    justify-content: flex-end; /* 靠右對齊 */
+    align-items: flex-end;     /* 靠下對齊 */
+    padding: 40px 5%;
+    box-sizing: border-box;
+    
+    /* 電腦版預設隱藏，準備做 Hover 動畫 */
+    opacity: 0;
+    transition: opacity 0.5s ease;
+}
+
+.banner-overlay span {
+    color: #fff;
+    font-size: 13px;
+    letter-spacing: 3px;
+    font-weight: 300;
+    display: flex;
+    align-items: center;
+    gap: 12px; /* 文字跟箭頭的距離 */
+    
+    /* 讓文字稍微偏右，hover 時滑進來 */
+    transform: translateX(20px);
+    transition: transform 0.5s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.banner-overlay span i {
+    font-size: 16px;
+    transition: transform 0.3s ease;
+}
+
+/* --- 電腦版 Hover 觸發條件 --- */
+.top-images-img:hover .banner-overlay {
+    opacity: 1; /* 漸層浮現 */
+}
+
+.top-images-img:hover .banner-overlay span {
+    transform: translateX(0); /* 文字滑入定位 */
+}
+
+.top-images-img:hover .banner-overlay span:hover i {
+    transform: translateX(6px); /* 滑鼠碰到字時，箭頭會生動地往前刺一下 */
+    color: #e61e19; /* 箭頭變為主題紅，增加點擊慾望 */
+}
+
+/* --- 手機版與平板：優雅降級 (局部常駐) --- */
+@media screen and (max-width: 1100px) {
+    .banner-overlay {
+        opacity: 1; /* 手機上永遠顯示 */
+        height: 100px;
+        padding: 20px 5%;
+    }
+    .banner-overlay span {
+        transform: translateX(0); /* 關閉位移動畫 */
+        font-size: 12px;
+    }
 }
 
 @media screen and (max-width:1100px) {
