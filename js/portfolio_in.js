@@ -1,57 +1,70 @@
 function setFotorama(){
-	var maxWidth = $(window).width() - 60; // 減少側邊間距，讓手機版有更多空間
-	var workHeight = $(window).height() - 100;
-	var workWidth = workHeight * 18 / 12; 
+	var winW = $(window).width();
+	var winH = $(window).height();
 	var isFotorama = $(".fotorama").length;
 
+	// Fotorama 的共用基本設定
 	var op = {
-		width: workWidth,
-		height: workHeight,
-		maxwidth: maxWidth,
-		nav: "thumbs", // 添加縮圖導航，方便行動裝置用戶
-		fit: 'scaledown',
-		arrows: true,  // 在行動裝置上顯示箭頭
-		stopautoplayontouch: false,
+		fit: 'scaledown', // 確保圖片按比例縮小，完整顯示不裁切
 		loop: true,
 		transition: 'crossfade',
 		transitionduration: 1000,
-		thumbwidth: 60,
-		thumbheight: 40,
-		thumbmargin: 3,
-		swipe: true  // 確保可滑動功能開啟
+		swipe: true,
+		stopautoplayontouch: false
+	};
+
+	// 根據不同裝置，給予不同的尺寸設定
+	if(isDevice() == "pc"){
+		// 【電腦版】維持您原本的「滿版固定高度」設計
+		var workHeight = winH - 100;
+		var workWidth = workHeight * 18 / 12; 
+		var maxWidth = winW - 60;
+		
+		op.width = workWidth;
+		op.height = workHeight;
+		op.maxwidth = maxWidth;
+		op.nav = "thumbs"; 
+		op.arrows = false; 
+		
+		// 👉 順便設定電腦版的縮圖大小 (比手機版稍微大一點更好點擊)
+		op.thumbwidth = 80; 
+		op.thumbheight = 60;
+		op.thumbmargin = 7;
+	} else {
+		// 【手機/平板版】寬度滿版，並使用「比例」來撐開高度
+		op.width = '100%';
+		op.ratio = 16/11; // 這裡設定圖片比例，您可依實際照片調整(例如 4/3 或 3/2)
+		op.maxwidth = '100%';
+		op.nav = "thumbs";
+		op.arrows = true;
+		op.thumbwidth = 40; 
+		op.thumbheight = 30;
+		op.thumbmargin = 3;
 	}
 
 	var eImg = $(".photos-list img");
 	var imgUrl = $(".photos-list").data('url');
 
-	// 為所有裝置使用相同的圖片資源，確保圖片能顯示
+	// 初始化或更新 Fotorama
 	if(!isFotorama){
-		// 初始化所有圖片，不論裝置類型
 		eImg.each(function(index, el) {
 			var imgNum = index+1;
 			var imgSrc = "images/portfolio/"+imgUrl+"/"+imgNum+".jpg";
 			$(this).attr("src", imgSrc);
 		});
 
-		$fotoramaDiv = $('.photos-list').fotorama();
+		$fotoramaDiv = $('.photos-list').fotorama(op);
 		fotorama = $fotoramaDiv.data('fotorama');
+	} else {
+		// 螢幕翻轉或縮放時，重新載入設定
+		fotorama.setOptions(op);
 	}
 
-	// 根據裝置類型設定不同的選項
-	if(isDevice() == "pc"){
-		op.nav = false; // PC版無需縮圖導航
-		op.arrows = false; // PC版使用自定義箭頭
-		fotorama.setOptions(op);
-	} else {
-		// 行動裝置特定設定
-		op.nav = "thumbs";
-		op.arrows = true;
-		op.thumbwidth = 40; // 縮小行動裝置上縮圖大小
-		op.thumbheight = 30;
-		fotorama.setOptions(op);
-		
-		// 修正行動裝置上的圖片控制區域
+	// 隱藏自訂的箭頭，讓手機版使用 Fotorama 內建箭頭
+	if(isDevice() != "pc") {
 		$(".photos-prev, .photos-next").css("display", "none");
+	} else {
+		$(".photos-prev, .photos-next").css("display", "block");
 	}
 }
 

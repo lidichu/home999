@@ -598,7 +598,11 @@
 
 /* --- 手機版與平板：優雅降級 (局部常駐) --- */
 @media screen and (max-width: 1100px) {
-    .banner-overlay {
+
+}
+
+@media screen and (max-width:1100px) {
+	    .banner-overlay {
         opacity: 1; /* 手機上永遠顯示 */
         height: 100px;
         padding: 20px 5%;
@@ -607,9 +611,6 @@
         transform: translateX(0); /* 關閉位移動畫 */
         font-size: 12px;
     }
-}
-
-@media screen and (max-width:1100px) {
     .slogan-text {
         font-size: 3em
     }
