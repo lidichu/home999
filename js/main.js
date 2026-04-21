@@ -16,7 +16,7 @@ function setAnimate(){
 	$(".show-item").each(function(index, el) {
 		var contH = $(this).offset().top;
 
-		if(scrollT > contH-winH*0.8){
+		if(scrollT > contH-winH*0.85){
 			$(this).addClass("show-now");
 		}else{
 			$(this).removeClass('show-now');
@@ -317,6 +317,61 @@ $(function(){
 				 }
 })
 })
+
+// --- 裝修學堂分類篩選功能 (支援網址參數版) ---
+function setKnowledgeFilter() {
+    // 判斷頁面中有沒有 category-tags，沒有的話就不執行
+    if ($('.category-tags').length === 0) return;
+
+    // 1. 綁定點擊事件
+    $('.category-tags .tag').on('click', function(e) {
+        e.preventDefault();
+
+        // 切換按鈕 active 狀態
+        $('.category-tags .tag').removeClass('active');
+        $(this).addClass('active');
+
+        // 取得點擊的分類名稱
+        var filterValue = $(this).attr('data-filter');
+
+        // 執行文章的隱藏與顯示
+        if (filterValue === 'all') {
+            $('.list .list-item').fadeIn(400);
+        } else {
+            $('.list .list-item').hide();
+            $('.list .list-item.' + filterValue).fadeIn(400);
+        }
+
+        // --- 新增：點擊時動態更新網址列 (不重新整理頁面) ---
+        if (history.pushState) {
+            var newurl = window.location.protocol + "//" + window.location.host + window.location.pathname;
+            // 如果不是 'all'，就把參數加上去；如果是 'all'，就保持乾淨的網址
+            if (filterValue !== 'all') {
+                newurl += '?item=' + filterValue;
+            }
+            window.history.pushState({path:newurl}, '', newurl);
+        }
+    });
+
+    // 2. --- 新增：網頁剛載入時，檢查網址列有沒有參數 ---
+    var urlParams = new URLSearchParams(window.location.search);
+    var itemParam = urlParams.get('item'); // 抓取 ?item= 後面的值
+
+    if (itemParam) {
+        // 如果有參數，去尋找對應的標籤
+        var targetTag = $('.category-tags .tag[data-filter="' + itemParam + '"]');
+        
+        if (targetTag.length > 0) {
+            // 如果有找到對應的標籤，就自動觸發點擊事件
+            targetTag.click();
+        }
+    }
+}
+
+// 確保網頁載入完成後執行
+$(window).load(function(){
+    setKnowledgeFilter();
+});
 
 $(window).scroll(function(){
 	setScroll();
